@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>深圳市嘉旅国际物流有限公司 — 国际物流一站式服务 | SHENZHEN EXCELLENT VOYAGE INTERNATIONAL LOGISTIC CO., LTD.</title>
+<style>
+  :root { --navy: #0b2a4a; --navy2: #123c66; --gold: #f5a623; --ink: #1a1a1a; --muted: #5a6b7d; --line: #e5e9ee; --bg: #f7f9fc; }
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; margin: 0; color: var(--ink); line-height: 1.7; background: #fff; }
+  a { color: var(--navy2); }
+  .langbar { background: var(--navy); color: #fff; text-align: right; padding: 8px 16px; font-size: 14px; }
+  .langbar button { background: transparent; border: 1px solid rgba(255,255,255,.4); color: #fff; border-radius: 999px; padding: 4px 14px; margin-left: 8px; cursor: pointer; font: inherit; font-size: 14px; }
+  .langbar button.active { background: var(--gold); color: #1a1a1a; border-color: var(--gold); font-weight: bold; }
+  .lang-en { display: none; }
+  body.lang-en .lang-zh { display: none; }
+  body.lang-en .lang-en { display: block; }
+  header.hero { background: linear-gradient(135deg, #081f38 0%, var(--navy) 55%, var(--navy2) 100%); color: #fff; padding: 64px 24px 56px; text-align: center; }
+  header.hero h1 { margin: 0; font-size: 38px; letter-spacing: 2px; line-height: 1.3; }
+  header.hero .en { margin-top: 10px; font-size: 13px; opacity: .75; letter-spacing: 1px; }
+  header.hero p.tag { margin: 20px 0 0; font-size: 19px; opacity: .95; }
+  header.hero p.sub { margin: 8px 0 0; font-size: 15px; opacity: .8; }
+  nav { background: #fff; border-bottom: 1px solid var(--line); text-align: center; padding: 12px 16px; position: sticky; top: 0; }
+  nav a { display: inline-block; margin: 0 12px; text-decoration: none; color: var(--navy); font-size: 15px; }
+  nav a:hover { color: var(--gold); }
+  nav a span { font-size: 12px; opacity: .65; }
+  main { max-width: 960px; margin: 0 auto; padding: 16px 24px 72px; }
+  h2 { color: var(--navy); border-left: 4px solid var(--gold); padding-left: 12px; margin-top: 48px; font-size: 23px; }
+  .stats { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 24px; }
+  .stat { flex: 1 1 180px; background: var(--bg); border-radius: 12px; padding: 20px; text-align: center; }
+  .stat b { display: block; font-size: 30px; color: var(--navy); line-height: 1.2; }
+  .stat span { font-size: 14px; color: var(--muted); }
+  .cards { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 24px; }
+  .card { flex: 1 1 240px; border: 1px solid var(--line); border-radius: 12px; padding: 20px; background: #fff; }
+  .card h3 { margin: 0 0 8px; color: var(--navy); font-size: 18px; }
+  .card p { margin: 0; color: var(--muted); font-size: 15px; }
+  .lanes { margin-top: 24px; }
+  .lane { display: flex; gap: 16px; align-items: baseline; border-bottom: 1px dashed var(--line); padding: 14px 0; }
+  .lane:last-child { border-bottom: none; }
+  .lane b { color: var(--navy); min-width: 88px; font-size: 17px; }
+  .lane span { color: var(--muted); font-size: 15px; }
+  .tags { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
+  .tag { background: var(--bg); border: 1px solid var(--line); border-radius: 999px; padding: 8px 18px; font-size: 15px; }
+  .flow { background: var(--bg); border-radius: 12px; padding: 20px 24px; margin-top: 24px; font-size: 15px; }
+  .flow b { color: var(--navy); }
+  table.compare { width: 100%; border-collapse: collapse; margin-top: 24px; font-size: 15px; }
+  table.compare th, table.compare td { border: 1px solid var(--line); padding: 12px 14px; text-align: left; vertical-align: top; }
+  table.compare th { background: var(--bg); color: var(--navy); }
+  table.compare td:first-child { font-weight: bold; color: var(--navy); white-space: nowrap; }
+  .note { color: var(--muted); font-size: 15px; margin-top: 16px; }
+  .faq { margin-top: 24px; }
+  .faq details { border: 1px solid var(--line); border-radius: 12px; padding: 16px 20px; margin-bottom: 12px; }
+  .faq summary { cursor: pointer; color: var(--navy); font-weight: bold; }
+  .faq p { color: var(--muted); font-size: 15px; margin: 8px 0 0; }
+  .contact { background: var(--navy); color: #fff; border-radius: 12px; padding: 28px; margin-top: 24px; }
+  .contact h3 { margin: 0 0 12px; font-size: 19px; }
+  .contact p { margin: 6px 0; opacity: .95; }
+  .contact a { color: #ffd97a; }
+  .form label { display: block; margin: 14px 0 4px; font-size: 15px; }
+  .form input, .form select, .form textarea { width: 100%; padding: 10px 12px; border: 1px solid var(--line); border-radius: 8px; font: inherit; font-size: 15px; }
+  .form textarea { min-height: 110px; resize: vertical; }
+  .btn { display: inline-block; background: var(--gold); color: #1a1a1a; border: none; padding: 12px 24px; border-radius: 999px; font-size: 15px; font-weight: bold; cursor: pointer; text-decoration: none; margin-top: 16px; }
+  .btn-outline { display: inline-block; background: transparent; color: #ffd97a; border: 1px solid #ffd97a; padding: 11px 24px; border-radius: 999px; font-size: 15px; font-weight: bold; cursor: pointer; text-decoration: none; margin-top: 16px; margin-left: 12px; }
+  footer { text-align: center; color: var(--muted); font-size: 13px; padding: 32px 24px; border-top: 1px solid var(--line); }
+  @media (max-width: 640px) {
+    header.hero h1 { font-size: 28px; }
+    nav a { margin: 0 8px; font-size: 14px; }
+    .btn-outline { margin-left: 0; }
+  }
+</style>
+<script>
+  function setLang(l) {
+    document.body.classList.toggle('lang-en', l === 'en');
+    document.documentElement.lang = (l === 'en') ? 'en' : 'zh-CN';
+    var z = document.getElementById('btn-zh');
+    var e = document.getElementById('btn-en');
+    if (z) { z.setAttribute('aria-pressed', l === 'zh' ? 'true' : 'false'); z.classList.toggle('active', l === 'zh'); }
+    if (e) { e.setAttribute('aria-pressed', l === 'en' ? 'true' : 'false'); e.classList.toggle('active', l === 'en'); }
+  }
+</script>
+</head>
+<body>
+<div class="langbar">语言 Language:
+  <button id="btn-zh" class="active" aria-pressed="true" onclick="setLang('zh')">中文</button>
+  <button id="btn-en" aria-pressed="false" onclick="setLang('en')">EN</button>
+</div>
+
+<header class="hero">
+  <div class="lang-zh">
+    <h1>深圳市嘉旅国际物流有限公司</h1>
+    <p class="en">SHENZHEN EXCELLENT VOYAGE INTERNATIONAL LOGISTIC CO., LTD.</p>
+    <p class="tag">海运 · 空运 · 快递 · 仓储 · 报关，一站式国际物流服务</p>
+    <p class="sub">为全球客户提供专业、高效、可靠的国际物流服务</p>
+  </div>
+  <div class="lang-en">
+    <h1>SHENZHEN EXCELLENT VOYAGE INTERNATIONAL LOGISTIC CO., LTD.</h1>
+    <p class="tag">One-Stop International Logistics: Ocean · Air · Express · Warehousing · Customs</p>
+    <p class="sub">Professional, efficient and reliable international logistics services for customers worldwide.</p>
+  </div>
+</header>
+
+<nav>
+  <a href="#services">服务 <span>Services</span></a>
+  <a href="#lanes">主推航线 <span>Lanes</span></a>
+  <a href="#cargo">主推货类 <span>Cargo</span></a>
+  <a href="#company">公司 <span>About</span></a>
+  <a href="#beacon">建站业务 <span>Beacon Sites</span></a>
+  <a href="#tracking">货物跟踪 <span>Tracking</span></a>
+  <a href="#faq">常见问题 <span>FAQ</span></a>
+  <a href="#contact">联系 <span>Contact</span></a>
+</nav>
+
+<main>
+  <div class="lang-zh">
+    <div class="stats">
+      <div class="stat"><b>50+</b><span>覆盖国家</span></div>
+      <div class="stat"><b>10万+</b><span>年货运量（TEU）</span></div>
+      <div class="stat"><b>99%</b><span>客户满意度</span></div>
+      <div class="stat"><b>7×24</b><span>小时在线服务</span></div>
+    </div>
+  </div>
+  <div class="lang-en">
+    <div class="stats">
+      <div class="stat"><b>50+</b><span>Countries Covered</span></div>
+      <div class="stat"><b>100,000+</b><span>Annual Volume (TEU)</span></div>
+      <div class="stat"><b>99%</b><span>Customer Satisfaction</span></div>
+      <div class="stat"><b>7×24</b><span>Online Service</span></div>
+    </div>
+  </div>
+
+  <section id="services">
+    <div class="lang-zh">
+      <h2>服务</h2>
+      <p>海运、空运、快递、仓储、报关一站式，另可提供定制化供应链管理方案。</p>
+      <div class="cards">
+        <div class="card"><h3>海运</h3><p>整箱、拼箱出运，覆盖主推航线与全球 50+ 国家。</p></div>
+        <div class="card"><h3>空运</h3><p>时效优先的空中通道，适合紧急与高价值货物。</p></div>
+        <div class="card"><h3>快递</h3><p>门到门快递服务，小件、样品、紧急件更灵活。</p></div>
+        <div class="card"><h3>仓储</h3><p>仓储配套，衔接出运与配送环节。</p></div>
+        <div class="card"><h3>报关</h3><p>报关服务一站式对接，减少出运环节的沟通成本。</p></div>
+        <div class="card"><h3>供应链管理</h3><p>按客户需求定制供应链方案。</p></div>
+      </div>
+    </div>
+    <div class="lang-en">
+      <h2>Services</h2>
+      <p>One-stop ocean, air, express, warehousing and customs services, plus customised supply chain management solutions.</p>
+      <div class="cards">
+        <div class="card"><h3>Ocean Freight</h3><p>FCL and LCL shipments covering our key lanes and 50+ countries worldwide.</p></div>
+        <div class="card"><h3>Air Freight</h3><p>Time-critical air routes, suited to urgent and high-value cargo.</p></div>
+        <div class="card"><h3>Express</h3><p>Door-to-door express service — more flexible for small parcels, samples and urgent items.</p></div>
+        <div class="card"><h3>Warehousing</h3><p>Warehousing support connecting shipment and delivery.</p></div>
+        <div class="card"><h3>Customs Clearance</h3><p>One-stop customs handling, cutting coordination costs across the shipment.</p></div>
+        <div class="card"><h3>Supply Chain Management</h3><p>Supply chain solutions tailored to your needs.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="lanes">
+    <div class="lang-zh">
+      <h2>主推航线</h2>
+      <div class="lanes">
+        <div class="lane"><b>东南亚</b><span>越南海防 · 老挝 · 泰国</span></div>
+        <div class="lane"><b>中东</b><span>吉达</span></div>
+        <div class="lane"><b>欧洲</b><span>鹿特丹 · 汉堡</span></div>
+      </div>
+    </div>
+    <div class="lang-en">
+      <h2>Key Lanes</h2>
+      <div class="lanes">
+        <div class="lane"><b>Southeast Asia</b><span>Haiphong, Vietnam · Laos · Thailand</span></div>
+        <div class="lane"><b>Middle East</b><span>Jeddah</span></div>
+        <div class="lane"><b>Europe</b><span>Rotterdam · Hamburg</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="cargo">
+    <div class="lang-zh">
+      <h2>主推货类</h2>
+      <div class="tags">
+        <span class="tag">家具</span>
+        <span class="tag">陶瓷</span>
+        <span class="tag">纺织</span>
+        <span class="tag">电池</span>
+      </div>
+    </div>
+    <div class="lang-en">
+      <h2>Key Cargo</h2>
+      <div class="tags">
+        <span class="tag">Furniture</span>
+        <span class="tag">Ceramics</span>
+        <span class="tag">Textiles</span>
+        <span class="tag">Batteries</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="company">
+    <div class="lang-zh">
+      <h2>公司</h2>
+      <p>深圳市嘉旅国际物流有限公司成立于 2022 年 9 月，位于深圳龙岗，注册资金 200 万元，在广州、宁波、上海、天津设有分支。</p>
+      <p>资质：无船承运业务（NVOCC）备案 GD20251119163617。</p>
+      <p>服务客户行业：电子、机械、纺织、家居。</p>
+      <div class="flow">
+        <p>服务流程：<b>询价 → 方案 → 订舱/建站 → 交付 → 维护</b></p>
+      </div>
+    </div>
+    <div class="lang-en">
+      <h2>About Us</h2>
+      <p>SHENZHEN EXCELLENT VOYAGE INTERNATIONAL LOGISTIC CO., LTD. was founded in September 2022, based in Longgang, Shenzhen, with registered capital of RMB 2 million and branches in Guangzhou, Ningbo, Shanghai and Tianjin.</p>
+      <p>Qualification: NVOCC (Non-Vessel Operating Common Carrier) filing GD20251119163617.</p>
+      <p>Industries served: electronics, machinery, textiles, home furnishings.</p>
+      <div class="flow">
+        <p>How it works: <b>Inquiry → Proposal → Booking / Website Build → Delivery → Maintenance</b></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="beacon">
+    <div class="lang-zh">
+      <h2>建站业务 · 灯塔建站</h2>
+      <p>为外贸与中小企业建中英双语网站：低价起步、交付快，美元结算。早鸟价限前 10 单，之后恢复正式价。咨询请见下方联系方式。</p>
+      <p>基础版：早鸟价 <b>$499</b>（限前 10 单），之后正式价 <b>$699</b>。标准版：早鸟价 <b>$899</b>（限前 10 单），之后正式价 <b>$1,199</b>。</p>
+      <table class="compare">
+        <tr><th>项目</th><th>基础版</th><th>标准版</th></tr>
+        <tr><td>页面数量</td><td>基础页面</td><td>基础版页面 + 服务页、主推航线页</td></tr>
+        <tr><td>中英双语</td><td>✓</td><td>✓</td></tr>
+        <tr><td>联系表单</td><td>✓</td><td>✓</td></tr>
+        <tr><td>SEO</td><td>✓ 基础 SEO</td><td>✓ 基础 SEO</td></tr>
+        <tr><td>移动端</td><td>✓ 移动端适配</td><td>✓ 移动端适配</td></tr>
+        <tr><td>CDN</td><td>✓ 海外 CDN</td><td>✓ 海外 CDN</td></tr>
+        <tr><td>维护期</td><td>1–3 个月免费维护</td><td>1–3 个月免费维护</td></tr>
+        <tr><td>询价表单</td><td>—</td><td>✓ 在线询价表单</td></tr>
+        <tr><td>跟踪入口</td><td>—</td><td>✓ 货物跟踪入口</td></tr>
+      </table>
+      <div class="flow">
+        <p>付款节奏：<b>40% / 40% / 20%</b>（签约 / 完成 / 验收上线 10 天内付清）。基础版 <b>7–10 天</b>交付。</p>
+      </div>
+      <p class="note">不包含项：域名与服务器费用实报另计；免费维护期后费用另议；大幅改动另议。</p>
+      <p>付款方式：银行电汇（美元结算）。收款银行：JPMorgan Chase Bank N.A. 香港分行。支持香港本地 CHATS（1 个工作日到账）、SWIFT 电汇（1–3 个工作日到账）与 FPS。汇款账户信息请联系 sales06@excellent-voyage.cn 索取；汇款附言请注明买家名、发票/合同号、产品名。</p>
+    </div>
+    <div class="lang-en">
+      <h2>Beacon Sites — Website Building</h2>
+      <p>We build bilingual (Chinese/English) websites for foreign-trade and small businesses: low starting price, fast delivery, USD pricing. Early-bird pricing is limited to the first 10 orders; regular pricing applies after that. See the contact section below for inquiries.</p>
+      <p>Basic: early-bird <b>$499</b> (first 10 orders), then regular <b>$699</b>. Standard: early-bird <b>$899</b> (first 10 orders), then regular <b>$1,199</b>.</p>
+      <table class="compare">
+        <tr><th>Feature</th><th>Basic</th><th>Standard</th></tr>
+        <tr><td>Number of Pages</td><td>Core pages</td><td>Core pages + services page and key-lanes page</td></tr>
+        <tr><td>Bilingual (EN/中文）</td><td>✓</td><td>✓</td></tr>
+        <tr><td>Contact Form</td><td>✓</td><td>✓</td></tr>
+        <tr><td>SEO</td><td>✓ Basic SEO</td><td>✓ Basic SEO</td></tr>
+        <tr><td>Mobile</td><td>✓ Mobile-friendly</td><td>✓ Mobile-friendly</td></tr>
+        <tr><td>CDN</td><td>✓ Overseas CDN</td><td>✓ Overseas CDN</td></tr>
+        <tr><td>Maintenance Period</td><td>1–3 months free maintenance</td><td>1–3 months free maintenance</td></tr>
+        <tr><td>Inquiry Form</td><td>—</td><td>✓ Online inquiry form</td></tr>
+        <tr><td>Tracking Portal</td><td>—</td><td>✓ Cargo tracking portal</td></tr>
+      </table>
+      <div class="flow">
+        <p>Payment terms: <b>40% / 40% / 20%</b> (on signing / on completion / within 10 days after acceptance and launch). Basic plan delivered in <b>7–10 days</b>.</p>
+      </div>
+      <p class="note">Not included: domain and server costs are billed at actual cost; fees after the free maintenance period are to be agreed separately; major revisions are to be agreed separately.</p>
+      <p>Payment method: bank wire transfer (USD settlement). Receiving bank: JPMorgan Chase Bank N.A., Hong Kong Branch. Hong Kong local CHATS (1 business day), SWIFT wire transfer (1–3 business days) and FPS are accepted. Please contact sales06@excellent-voyage.cn for the remittance account details; please include your name, invoice/contract number and product name in the payment memo.</p>
+    </div>
+  </section>
+
+  <section id="tracking">
+    <div class="lang-zh">
+      <h2>货物跟踪</h2>
+      <p>凭提单号或订舱号查询货物动态。请通过下方联系方式提供提单号或订舱号，我们帮您查询货物动态。</p>
+    </div>
+    <div class="lang-en">
+      <h2>Cargo Tracking</h2>
+      <p>Track your shipment with your bill of lading number or booking number. Contact us below with your B/L or booking number and we will check the shipment status for you.</p>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="lang-zh">
+      <h2>常见问题</h2>
+      <div class="faq">
+        <details><summary>建站报价包含什么？</summary><p>以对照表为准：基础版与标准版所列项目。早鸟价限前 10 单，之后恢复正式价；付款节奏为 40% / 40% / 20%。</p></details>
+        <details><summary>域名和服务器费用谁出？</summary><p>不包含在报价内，域名与服务器费用实报另计。</p></details>
+        <details><summary>免费维护期结束后费用怎么算？</summary><p>免费维护期后费用另议，具体以约定为准。</p></details>
+        <details><summary>建站交付流程是怎样的？</summary><p>询价 → 方案 → 建站 → 交付 → 维护。基础版 7–10 天交付；标准版交付期以具体方案约定为准。</p></details>
+        <details><summary>改动政策是怎样的？</summary><p>大幅改动另议，具体以约定为准。</p></details>
+        <details><summary>货代询价需要提供什么？</summary><p>请在下方询价表单填写姓名、邮箱、需求类型（货代询价 / 建站咨询）、货量或预算、留言，我们收到后与您确认方案。</p></details>
+        <details><summary>付款方式有哪些？</summary><p>银行电汇（美元结算），支持香港本地 CHATS、SWIFT 电汇与 FPS；汇款账户信息请联系 sales06@excellent-voyage.cn 索取，汇款附言请注明买家名、发票/合同号、产品名。</p></details>
+      </div>
+    </div>
+    <div class="lang-en">
+      <h2>FAQ</h2>
+      <div class="faq">
+        <details><summary>What does the website-building quote include?</summary><p>Everything listed in the comparison table for the Basic or Standard plan. Early-bird pricing is limited to the first 10 orders; regular pricing applies after that. Payment terms are 40% / 40% / 20%.</p></details>
+        <details><summary>Who pays for the domain and server?</summary><p>They are not included in the quote; domain and server costs are billed at actual cost.</p></details>
+        <details><summary>What happens after the free maintenance period?</summary><p>Fees after the free maintenance period are to be agreed separately, as agreed with you.</p></details>
+        <details><summary>What is the website delivery process?</summary><p>Inquiry → Proposal → Website Build → Delivery → Maintenance. The Basic plan is delivered in 7–10 days; the Standard plan timeline is as agreed in the proposal.</p></details>
+        <details><summary>What is the revision policy?</summary><p>Major revisions are to be agreed separately, as agreed with you.</p></details>
+        <details><summary>What do I need to provide for a freight inquiry?</summary><p>Please fill in the inquiry form below with your name, email, inquiry type (freight inquiry / website consultation), volume or budget, and message. We will confirm the proposal with you after receiving it.</p></details>
+        <details><summary>What payment methods do you accept?</summary><p>Bank wire transfer (USD settlement) via Hong Kong local CHATS, SWIFT wire transfer or FPS. Please contact sales06@excellent-voyage.cn for the remittance account details, and include your name, invoice/contract number and product name in the payment memo.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="lang-zh">
+      <h2>联系</h2>
+      <div class="contact">
+        <h3>深圳市嘉旅国际物流有限公司</h3>
+        <p>电话：+86 13590173320</p>
+        <p>邮箱：sales06@excellent-voyage.cn</p>
+        <form class="form" action="mailto:sales06@excellent-voyage.cn" method="post" enctype="text/plain">
+          <label for="name-zh">姓名</label>
+          <input id="name-zh" name="姓名" type="text" required>
+          <label for="email-zh">邮箱</label>
+          <input id="email-zh" name="邮箱" type="email" required>
+          <label for="type-zh">需求类型</label>
+          <select id="type-zh" name="需求类型">
+            <option>货代询价</option>
+            <option>建站咨询</option>
+          </select>
+          <label for="volume-zh">货量或预算</label>
+          <input id="volume-zh" name="货量或预算" type="text">
+          <label for="msg-zh">留言</label>
+          <textarea id="msg-zh" name="留言"></textarea>
+          <button class="btn" type="submit">提交询价（打开邮件客户端）</button>
+          <a class="btn-outline" href="mailto:sales06@excellent-voyage.cn">发邮件询价</a>
+        </form>
+        <p class="note" style="color: rgba(255,255,255,.85);">提交后将打开您的邮件客户端，把询价内容发到 sales06@excellent-voyage.cn，不接后端。</p>
+      </div>
+    </div>
+    <div class="lang-en">
+      <h2>Contact</h2>
+      <div class="contact">
+        <h3>SHENZHEN EXCELLENT VOYAGE INTERNATIONAL LOGISTIC CO., LTD.</h3>
+        <p>Phone: +86 13590173320</p>
+        <p>Email: sales06@excellent-voyage.cn</p>
+        <form class="form" action="mailto:sales06@excellent-voyage.cn" method="post" enctype="text/plain">
+          <label for="name-en">Name</label>
+          <input id="name-en" name="Name" type="text" required>
+          <label for="email-en">Email</label>
+          <input id="email-en" name="Email" type="email" required>
+          <label for="type-en">Inquiry Type</label>
+          <select id="type-en" name="Inquiry Type">
+            <option>Freight Inquiry</option>
+            <option>Website Consultation</option>
+          </select>
+          <label for="volume-en">Volume or Budget</label>
+          <input id="volume-en" name="Volume or Budget" type="text">
+          <label for="msg-en">Message</label>
+          <textarea id="msg-en" name="Message"></textarea>
+          <button class="btn" type="submit">Submit Inquiry (opens your email client)</button>
+          <a class="btn-outline" href="mailto:sales06@excellent-voyage.cn">Email Us</a>
+        </form>
+        <p class="note" style="color: rgba(255,255,255,.85);">Submitting opens your email client and sends your inquiry to sales06@excellent-voyage.cn. No backend is used.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>深圳市嘉旅国际物流有限公司 · SHENZHEN EXCELLENT VOYAGE INTERNATIONAL LOGISTIC CO., LTD.</footer>
+</body>
+</html>
