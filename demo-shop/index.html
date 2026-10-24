@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mellow Market · 线上商店（演示） | Online Store (Demo)</title>
+<style>
+  :root { --terra: #b4532a; --terra2: #e08a3c; --ink: #2b2320; --muted: #7a6a5e; --line: #eadfd6; --bg: #fdf8f2; }
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Segoe UI", sans-serif; margin: 0; color: var(--ink); line-height: 1.7; background: var(--bg); -webkit-font-smoothing: antialiased; }
+  a { color: var(--terra); }
+  .demo-strip { background: #f5a623; color: #1a1a1a; text-align: center; padding: 9px 16px; font-size: 13.5px; font-weight: 600; }
+  .demo-strip a { color: #1a1a1a; }
+  .langbar { background: #2b2320; color: #fff; text-align: right; padding: 10px 20px; font-size: 14px; }
+  .langbar button { background: transparent; border: 1px solid rgba(255,255,255,.4); color: #fff; border-radius: 999px; padding: 5px 16px; margin-left: 8px; cursor: pointer; font: inherit; font-size: 14px; }
+  .langbar button.active { background: #f5a623; color: #1a1a1a; border-color: #f5a623; font-weight: bold; }
+  .lang-en { display: none; }
+  body.lang-en .lang-zh { display: none; }
+  body.lang-en .lang-en { display: block; }
+  header { background: linear-gradient(120deg, #b4532a, #e08a3c); color: #fff; padding: 64px 24px 56px; text-align: center; }
+  header h1 { margin: 0; font-size: 44px; letter-spacing: 1px; }
+  header p { margin: 14px 0 0; font-size: 18px; opacity: .95; }
+  .cartbar { background: #fff; border-bottom: 1px solid #eadfd6; text-align: center; padding: 12px 16px; position: sticky; top: 0; font-size: 15px; }
+  .cartbar b { color: var(--terra); }
+  .cartbar button { background: var(--terra); color: #fff; border: none; border-radius: 999px; padding: 7px 18px; font: inherit; font-size: 14px; font-weight: bold; cursor: pointer; margin-left: 10px; }
+  main { max-width: 1040px; margin: 0 auto; padding: 16px 24px 72px; }
+  section { margin-top: 56px; }
+  h2 { color: #2b2320; font-size: 27px; margin: 0 0 8px; }
+  .sub { color: var(--muted); margin: 0 0 20px; }
+  .filters button { background: #fff; border: 1px solid #e0d2c2; color: var(--ink); border-radius: 999px; padding: 7px 18px; margin: 0 8px 8px 0; cursor: pointer; font: inherit; font-size: 14px; }
+  .filters button.active { background: var(--terra); color: #fff; border-color: var(--terra); }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 20px; }
+  .card { border: 1px solid #eadfd6; border-radius: 16px; overflow: hidden; background: #fff; box-shadow: 0 6px 18px rgba(180,83,42,.08); }
+  .tile { height: 130px; display: flex; align-items: center; justify-content: center; font-size: 40px; font-weight: 800; color: #fff; }
+  .tile.k1 { background: linear-gradient(135deg, #b4532a, #d97a4a); }
+  .tile.k2 { background: linear-gradient(135deg, #7a5c3e, #a98a68); }
+  .tile.k3 { background: linear-gradient(135deg, #3e7a5c, #6fb08e); }
+  .tile.k4 { background: linear-gradient(135deg, #8a5a9e, #b08ad0); }
+  .tile.k5 { background: linear-gradient(135deg, #2f6f8f, #5fa8c8); }
+  .tile.k6 { background: linear-gradient(135deg, #a33a3a, #d07a7a); }
+  .card-body { padding: 18px; }
+  .card-body h3 { margin: 0 0 6px; font-size: 17px; }
+  .card-body p { margin: 0; color: var(--muted); font-size: 14.5px; }
+  .row { display: flex; justify-content: space-between; align-items: center; margin-top: 12px; }
+  .price { font-weight: 800; font-size: 18px; color: var(--terra); }
+  .add { background: var(--terra); color: #fff; border: none; border-radius: 999px; padding: 8px 18px; font: inherit; font-size: 14px; font-weight: bold; cursor: pointer; }
+  .hidden { display: none !important; }
+  .cart { background: #fff; border: 1px solid #eadfd6; border-radius: 16px; padding: 24px 26px; }
+  .cart table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  .cart th, .cart td { text-align: left; padding: 9px 8px; border-bottom: 1px solid #f0e6da; }
+  .cart td button { background: #fff; border: 1px solid #e0d2c2; border-radius: 50%; width: 26px; height: 26px; cursor: pointer; font: inherit; }
+  .total { text-align: right; font-size: 18px; font-weight: 800; color: var(--terra); margin-top: 14px; }
+  .btn { display: inline-block; background: var(--terra); color: #fff; border: none; padding: 12px 26px; border-radius: 999px; font-size: 15px; font-weight: bold; cursor: pointer; margin-top: 14px; }
+  .ok { display: none; background: #e7f6ec; border: 1px solid #bfe3c8; color: #1e6b32; border-radius: 10px; padding: 12px 16px; margin-top: 16px; }
+  footer { text-align: center; color: var(--muted); font-size: 13px; padding: 32px 24px; border-top: 1px solid #eadfd6; }
+  @media (max-width: 820px) { .grid { grid-template-columns: 1fr 1fr; } header h1 { font-size: 32px; } }
+</style>
+<script>
+  var PRODUCTS = {
+    mug:    { zh: '陶土马克杯', en: 'Clay Mug', price: 18 },
+    tote:   { zh: '帆布手提袋', en: 'Canvas Tote Bag', price: 22 },
+    candle: { zh: '香薰蜡烛', en: 'Scented Candle', price: 26 },
+    notebook: { zh: '布面笔记本', en: 'Cloth Notebook', price: 15 },
+    bottle: { zh: '保温水瓶', en: 'Insulated Bottle', price: 29 },
+    blanket: { zh: '针织小毯子', en: 'Knit Throw Blanket', price: 49 }
+  };
+  var cart = {};
+  function setLang(l) {
+    document.body.classList.toggle('lang-en', l === 'en');
+    document.documentElement.lang = (l === 'en') ? 'en' : 'zh-CN';
+    var z = document.getElementById('btn-zh');
+    var e = document.getElementById('btn-en');
+    if (z) { z.setAttribute('aria-pressed', l === 'zh' ? 'true' : 'false'); z.classList.toggle('active', l === 'zh'); }
+    if (e) { e.setAttribute('aria-pressed', l === 'en' ? 'true' : 'false'); e.classList.toggle('active', l === 'en'); }
+    renderCart();
+  }
+  function isEn() { return document.body.classList.contains('lang-en'); }
+  function filterCat(cat, btn) {
+    document.querySelectorAll('.filters button').forEach(function (b) { b.classList.remove('active'); });
+    if (btn) btn.classList.add('active');
+    document.querySelectorAll('.card[data-cat]').forEach(function (c) {
+      c.classList.toggle('hidden', cat !== 'all' && c.getAttribute('data-cat') !== cat);
+    });
+  }
+  function addToCart(id) {
+    cart[id] = (cart[id] || 0) + 1;
+    renderCart();
+  }
+  function changeQty(id, d) {
+    cart[id] = (cart[id] || 0) + d;
+    if (cart[id] <= 0) delete cart[id];
+    renderCart();
+  }
+  function renderCart() {
+    var en = isEn();
+    var count = 0, total = 0, rows = '';
+    Object.keys(cart).forEach(function (id) {
+      var q = cart[id], p = PRODUCTS[id];
+      count += q; total += q * p.price;
+      rows += '<tr><td>' + (en ? p.en : p.zh) + '</td><td>$' + p.price + '</td><td><button onclick="changeQty(\'' + id + '\',-1)">−</button> ' + q + ' <button onclick="changeQty(\'' + id + '\',1)">+</button></td><td>$' + (q * p.price) + '</td></tr>';
+    });
+    document.querySelectorAll('.cart-n').forEach(function (el) { el.textContent = count; });
+    document.getElementById('cart-body').innerHTML = rows || '<tr><td colspan="4">' + (en ? 'Your cart is empty.' : '购物车是空的。') + '</td></tr>';
+    document.getElementById('cart-total').textContent = '$' + total;
+    document.getElementById('cart-title').textContent = en ? 'Your Cart' : '购物车';
+    document.getElementById('checkout-btn').textContent = en ? 'Checkout (Demo)' : '结算示意';
+    document.getElementById('total-label').textContent = en ? 'Total: ' : '合计：';
+  }
+  function checkout() {
+    var en = isEn();
+    document.getElementById('order-ok').style.display = 'block';
+    document.getElementById('order-ok').textContent = en ? 'Demo order placed (illustration only): no real order was created and no payment was taken.' : '演示下单成功（示意）：未产生真实订单、未扣款。';
+    cart = {};
+    renderCart();
+  }
+  document.addEventListener('DOMContentLoaded', renderCart);
+</script>
+</head>
+<body>
+<div class="demo-strip">演示作品，仅作效果展示 · 本店为虚构商店，非真实商家 <a href="../">← 返回灯塔建站</a> · Demo website for display only — fictional store, not a real business</div>
+<div class="langbar">语言 Language:
+  <button id="btn-zh" class="active" aria-pressed="true" onclick="setLang('zh')">中文</button>
+  <button id="btn-en" aria-pressed="false" onclick="setLang('en')">EN</button>
+</div>
+
+<header>
+  <div class="lang-zh">
+    <h1>Mellow Market</h1>
+    <p>日用杂货线上商店 · 商品、价格、购物车与下单均可试用（演示）</p>
+  </div>
+  <div class="lang-en">
+    <h1>Mellow Market</h1>
+    <p>Everyday Goods Online Store · Browse products, prices, cart and checkout demos</p>
+  </div>
+</header>
+
+<div class="cartbar">
+  <span class="lang-zh">购物车 <b class="cart-n">0</b> 件</span>
+  <span class="lang-en">Cart: <b class="cart-n">0</b> items</span>
+  <button onclick="document.getElementById('cart').scrollIntoView({behavior:'smooth'})"><span class="lang-zh">查看购物车</span><span class="lang-en">View Cart</span></button>
+</div>
+
+<main>
+  <section>
+    <div class="lang-zh">
+      <h2>商品</h2>
+      <p class="sub">以下商品与价格均为演示示意。点“加入购物车”可以试用购物车与结算流程，不会产生真实订单。</p>
+      <div class="filters">
+        <button class="active" onclick="filterCat('all', this)">全部</button>
+        <button onclick="filterCat('kitchen', this)">厨房</button>
+        <button onclick="filterCat('home', this)">家居</button>
+        <button onclick="filterCat('stationery', this)">文具</button>
+      </div>
+    </div>
+    <div class="lang-en">
+      <h2>Products</h2>
+      <p class="sub">Products and prices below are for display only. Click “Add to Cart” to try the cart and checkout flow — no real order is created.</p>
+      <div class="filters">
+        <button class="active" onclick="filterCat('all', this)">All</button>
+        <button onclick="filterCat('kitchen', this)">Kitchen</button>
+        <button onclick="filterCat('home', this)">Home</button>
+        <button onclick="filterCat('stationery', this)">Stationery</button>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="card" data-cat="kitchen"><div class="tile k1">杯</div><div class="card-body"><h3><span class="lang-zh">陶土马克杯</span><span class="lang-en">Clay Mug</span></h3><p><span class="lang-zh">手工感陶土杯，350ml。</span><span class="lang-en">Hand-feel clay mug, 350ml.</span></p><div class="row"><span class="price">$18</span><button class="add" onclick="addToCart('mug')"><span class="lang-zh">加入购物车</span><span class="lang-en">Add to Cart</span></button></div></div></div>
+      <div class="card" data-cat="home"><div class="tile k2">袋</div><div class="card-body"><h3><span class="lang-zh">帆布手提袋</span><span class="lang-en">Canvas Tote Bag</span></h3><p><span class="lang-zh">厚帆布，大容量，可水洗。</span><span class="lang-en">Heavy canvas, large capacity, washable.</span></p><div class="row"><span class="price">$22</span><button class="add" onclick="addToCart('tote')"><span class="lang-zh">加入购物车</span><span class="lang-en">Add to Cart</span></button></div></div></div>
+      <div class="card" data-cat="home"><div class="tile k3">烛</div><div class="card-body"><h3><span class="lang-zh">香薰蜡烛</span><span class="lang-en">Scented Candle</span></h3><p><span class="lang-zh">雪松香，燃烧约 40 小时。</span><span class="lang-en">Cedar scent, about 40 hours burn time.</span></p><div class="row"><span class="price">$26</span><button class="add" onclick="addToCart('candle')"><span class="lang-zh">加入购物车</span><span class="lang-en">Add to Cart</span></button></div></div></div>
+      <div class="card" data-cat="stationery"><div class="tile k4">本</div><div class="card-body"><h3><span class="lang-zh">布面笔记本</span><span class="lang-en">Cloth Notebook</span></h3><p><span class="lang-zh">布面装订，192 页点阵纸。</span><span class="lang-en">Cloth-bound, 192 dotted pages.</span></p><div class="row"><span class="price">$15</span><button class="add" onclick="addToCart('notebook')"><span class="lang-zh">加入购物车</span><span class="lang-en">Add to Cart</span></button></div></div></div>
+      <div class="card" data-cat="kitchen"><div class="tile k5">瓶</div><div class="card-body"><h3><span class="lang-zh">保温水瓶</span><span class="lang-en">Insulated Bottle</span></h3><p><span class="lang-zh">双层不锈钢，750ml，保温 12 小时。</span><span class="lang-en">Double-wall steel, 750ml, 12-hour insulation.</span></p><div class="row"><span class="price">$29</span><button class="add" onclick="addToCart('bottle')"><span class="lang-zh">加入购物车</span><span class="lang-en">Add to Cart</span></button></div></div></div>
+      <div class="card" data-cat="home"><div class="tile k6">毯</div><div class="card-body"><h3><span class="lang-zh">针织小毯子</span><span class="lang-en">Knit Throw Blanket</span></h3><p><span class="lang-zh">柔软针织，130 × 180cm。</span><span class="lang-en">Soft knit, 130 × 180cm.</span></p><div class="row"><span class="price">$49</span><button class="add" onclick="addToCart('blanket')"><span class="lang-zh">加入购物车</span><span class="lang-en">Add to Cart</span></button></div></div></div>
+    </div>
+  </section>
+
+  <section id="cart">
+    <h2 id="cart-title">购物车</h2>
+    <div class="cart">
+      <table>
+        <thead><tr><th><span class="lang-zh">商品</span><span class="lang-en">Item</span></th><th><span class="lang-zh">单价</span><span class="lang-en">Price</span></th><th><span class="lang-zh">数量</span><span class="lang-en">Qty</span></th><th><span class="lang-zh">小计</span><span class="lang-en">Subtotal</span></th></tr></thead>
+        <tbody id="cart-body"></tbody>
+      </table>
+      <div class="total"><span id="total-label">合计：</span><span id="cart-total">$0</span></div>
+      <button class="btn" id="checkout-btn" onclick="checkout()">结算示意</button>
+      <div class="ok" id="order-ok"></div>
+    </div>
+  </section>
+</main>
+
+<footer>演示作品，仅作效果展示 · 本店为虚构商店，非真实商家 · <a href="../">返回灯塔建站</a><br>Demo website for display only — fictional store, not a real business · <a href="../">Back to Beacon Sites</a></footer>
+</body>
+</html>

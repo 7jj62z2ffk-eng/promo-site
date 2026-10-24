@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BluePeak Marketing · 营销服务公司（演示） | Marketing Services Firm (Demo)</title>
+<style>
+  :root { --dark: #211d33; --dark2: #2d2350; --violet: #6d4fd8; --violet2: #9a7bf0; --ink: #23202e; --muted: #6a657d; --line: #e6e2f0; --bg: #f7f5fc; }
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Segoe UI", sans-serif; margin: 0; color: var(--ink); line-height: 1.75; background: #fff; -webkit-font-smoothing: antialiased; }
+  a { color: var(--violet); }
+  .demo-strip { background: #f5a623; color: #1a1a1a; text-align: center; padding: 9px 16px; font-size: 13.5px; font-weight: 600; }
+  .demo-strip a { color: #1a1a1a; }
+  .langbar { background: var(--dark); color: #fff; text-align: right; padding: 10px 20px; font-size: 14px; }
+  .langbar button { background: transparent; border: 1px solid rgba(255,255,255,.4); color: #fff; border-radius: 999px; padding: 5px 16px; margin-left: 8px; cursor: pointer; font: inherit; font-size: 14px; }
+  .langbar button.active { background: #f5a623; color: #1a1a1a; border-color: #f5a623; font-weight: bold; }
+  .lang-en { display: none; }
+  body.lang-en .lang-zh { display: none; }
+  body.lang-en .lang-en { display: block; }
+  header { background: linear-gradient(120deg, #211d33, #4b3590); color: #fff; padding: 72px 24px 64px; text-align: center; }
+  header h1 { margin: 0; font-size: 46px; letter-spacing: 1px; }
+  header p { margin: 16px 0 0; font-size: 18px; opacity: .94; }
+  nav { background: #fff; border-bottom: 1px solid var(--line); text-align: center; padding: 13px 16px; position: sticky; top: 0; }
+  nav a { margin: 0 14px; text-decoration: none; color: var(--dark); font-weight: 600; font-size: 15px; }
+  main { max-width: 1040px; margin: 0 auto; padding: 16px 24px 72px; }
+  section { margin-top: 64px; }
+  h2 { color: var(--dark); font-size: 28px; margin: 0 0 8px; }
+  .sub { color: var(--muted); margin: 0 0 24px; }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .card { border: 1px solid var(--line); border-radius: 14px; padding: 24px 22px; background: #fff; box-shadow: 0 6px 20px rgba(45,35,80,.06); }
+  .card .icon { width: 46px; height: 46px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 800; color: #fff; background: linear-gradient(135deg, var(--violet), var(--violet2)); margin-bottom: 14px; }
+  .card h3 { margin: 0 0 8px; font-size: 18px; color: var(--dark); }
+  .card p { margin: 0; color: var(--muted); font-size: 14.5px; }
+  .case { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: #fff; box-shadow: 0 6px 20px rgba(45,35,80,.06); }
+  .case-cover { height: 120px; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 24px; font-weight: 800; padding: 12px; text-align: center; }
+  .case-cover.c1 { background: linear-gradient(135deg, #4b3590, #7a5fd0); }
+  .case-cover.c2 { background: linear-gradient(135deg, #1e6b5c, #4fae8e); }
+  .case-cover.c3 { background: linear-gradient(135deg, #8a5a2e, #c89a5e); }
+  .case-body { padding: 20px 22px; }
+  .case-body h3 { margin: 0 0 6px; font-size: 17px; color: var(--dark); }
+  .case-body p { margin: 0; color: var(--muted); font-size: 14.5px; }
+  .case-body .tag { display: inline-block; background: #f1edfb; color: var(--violet); border-radius: 999px; padding: 2px 10px; font-size: 12.5px; margin-top: 10px; }
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 8px; }
+  .step { background: var(--bg); border-radius: 14px; padding: 20px 16px; text-align: center; }
+  .step b { display: block; width: 38px; height: 38px; line-height: 38px; margin: 0 auto 10px; border-radius: 50%; background: var(--violet); color: #fff; font-size: 17px; }
+  .step span { font-size: 15px; font-weight: 600; color: var(--dark); }
+  .form label { display: block; margin: 12px 0 4px; font-size: 15px; }
+  .form input, .form textarea, .form select { width: 100%; padding: 11px 13px; border: 1px solid var(--line); border-radius: 10px; font: inherit; font-size: 15px; }
+  .form textarea { min-height: 100px; }
+  .btn { display: inline-block; background: var(--violet); color: #fff; border: none; padding: 12px 26px; border-radius: 999px; font-size: 15px; font-weight: bold; cursor: pointer; margin-top: 16px; }
+  .ok { display: none; background: #e7f6ec; border: 1px solid #bfe3c8; color: #1e6b32; border-radius: 10px; padding: 12px 16px; margin-top: 16px; }
+  footer { text-align: center; color: var(--muted); font-size: 13px; padding: 32px 24px; border-top: 1px solid var(--line); }
+  @media (max-width: 820px) { .grid, .grid3, .steps { grid-template-columns: 1fr 1fr; } header h1 { font-size: 32px; } }
+</style>
+<script>
+  function setLang(l) {
+    document.body.classList.toggle('lang-en', l === 'en');
+    document.documentElement.lang = (l === 'en') ? 'en' : 'zh-CN';
+    var z = document.getElementById('btn-zh');
+    var e = document.getElementById('btn-en');
+    if (z) { z.setAttribute('aria-pressed', l === 'zh' ? 'true' : 'false'); z.classList.toggle('active', l === 'zh'); }
+    if (e) { e.setAttribute('aria-pressed', l === 'en' ? 'true' : 'false'); e.classList.toggle('active', l === 'en'); }
+  }
+  function demoSubmit(ev, id) {
+    ev.preventDefault();
+    document.getElementById(id).style.display = 'block';
+  }
+</script>
+</head>
+<body>
+<div class="demo-strip">演示作品，仅作效果展示 · 本公司为虚构公司，非真实企业 <a href="../">← 返回灯塔建站</a> · Demo website for display only — fictional company, not a real business</div>
+<div class="langbar">语言 Language:
+  <button id="btn-zh" class="active" aria-pressed="true" onclick="setLang('zh')">中文</button>
+  <button id="btn-en" aria-pressed="false" onclick="setLang('en')">EN</button>
+</div>
+
+<header>
+  <div class="lang-zh">
+    <h1>BluePeak Marketing</h1>
+    <p>让品牌被看见 · 搜索、社交、内容与付费广告</p>
+  </div>
+  <div class="lang-en">
+    <h1>BluePeak Marketing</h1>
+    <p>We Make Brands Seen · Search, Social, Content &amp; Paid Ads</p>
+  </div>
+</header>
+
+<nav>
+  <div class="lang-zh"><a href="#services">服务</a><a href="#cases">案例示意</a><a href="#process">流程</a><a href="#contact">联系</a></div>
+  <div class="lang-en"><a href="#services">Services</a><a href="#cases">Cases (Demo)</a><a href="#process">Process</a><a href="#contact">Contact</a></div>
+</nav>
+
+<main>
+  <section id="services">
+    <div class="lang-zh">
+      <h2>服务</h2>
+      <p class="sub">四项核心服务，可按需组合。以下介绍为演示文案。</p>
+      <div class="grid">
+        <div class="card"><div class="icon">搜</div><h3>搜索优化</h3><p>关键词、站内结构与内容优化，让客户在搜索时找到你。</p></div>
+        <div class="card"><div class="icon">社</div><h3>社交媒体</h3><p>账号运营与内容策划，把浏览者变成关注者与顾客。</p></div>
+        <div class="card"><div class="icon">文</div><h3>内容营销</h3><p>文章、短视频与图文内容，讲清楚产品好在哪。</p></div>
+        <div class="card"><div class="icon">广</div><h3>付费广告</h3><p>搜索与社交广告投放，按预算花钱、按效果复盘。</p></div>
+      </div>
+    </div>
+    <div class="lang-en">
+      <h2>Services</h2>
+      <p class="sub">Four core services, combinable to fit your needs. Descriptions below are demo copy.</p>
+      <div class="grid">
+        <div class="card"><div class="icon">SEO</div><h3>Search Optimization</h3><p>Keywords, site structure and content tuning so customers find you in search.</p></div>
+        <div class="card"><div class="icon">S</div><h3>Social Media</h3><p>Account management and content planning that turn viewers into followers and buyers.</p></div>
+        <div class="card"><div class="icon">C</div><h3>Content Marketing</h3><p>Articles, short videos and visuals that explain what makes your product good.</p></div>
+        <div class="card"><div class="icon">Ad</div><h3>Paid Advertising</h3><p>Search and social ad campaigns, spent by budget and reviewed by results.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="cases">
+    <div class="lang-zh">
+      <h2>案例示意</h2>
+      <p class="sub">以下案例与数据均为示意，用于展示“案例板块”可以长什么样，不是真实客户与真实效果。</p>
+      <div class="grid3">
+        <div class="case"><div class="case-cover c1">咖啡连锁</div><div class="case-body"><h3>一家咖啡连锁 · 线上订单提升（示意）</h3><p>搜索优化 + 社交内容三个月，线上订单量示意增长 120%。</p><span class="tag">案例示意</span></div></div>
+        <div class="case"><div class="case-cover c2">健身工作室</div><div class="case-body"><h3>一家健身工作室 · 体验课预约（示意）</h3><p>本地搜索 + 短视频内容，体验课预约量示意增长 80%。</p><span class="tag">案例示意</span></div></div>
+        <div class="case"><div class="case-cover c3">手工皂品牌</div><div class="case-body"><h3>一家手工皂品牌 · 新品上市（示意）</h3><p>内容种草 + 付费广告，新品首月销量示意达 5000 件。</p><span class="tag">案例示意</span></div></div>
+      </div>
+    </div>
+    <div class="lang-en">
+      <h2>Cases (Illustrative)</h2>
+      <p class="sub">The cases and figures below are illustrative, showing what a cases section can look like. They are not real clients or real results.</p>
+      <div class="grid3">
+        <div class="case"><div class="case-cover c1">Coffee Chain</div><div class="case-body"><h3>A Coffee Chain · Online Orders (Demo)</h3><p>Search optimization plus social content for three months; online orders illustratively up 120%.</p><span class="tag">Illustrative Case</span></div></div>
+        <div class="case"><div class="case-cover c2">Fitness Studio</div><div class="case-body"><h3>A Fitness Studio · Trial Bookings (Demo)</h3><p>Local search plus short videos; trial bookings illustratively up 80%.</p><span class="tag">Illustrative Case</span></div></div>
+        <div class="case"><div class="case-cover c3">Soap Brand</div><div class="case-body"><h3>A Handmade Soap Brand · Product Launch (Demo)</h3><p>Content seeding plus paid ads; first-month sales illustratively 5,000 units.</p><span class="tag">Illustrative Case</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="process">
+    <div class="lang-zh">
+      <h2>合作流程</h2>
+      <div class="steps">
+        <div class="step"><b>1</b><span>沟通需求</span></div>
+        <div class="step"><b>2</b><span>策划方案</span></div>
+        <div class="step"><b>3</b><span>执行投放</span></div>
+        <div class="step"><b>4</b><span>复盘优化</span></div>
+      </div>
+    </div>
+    <div class="lang-en">
+      <h2>How We Work</h2>
+      <div class="steps">
+        <div class="step"><b>1</b><span>Discover Needs</span></div>
+        <div class="step"><b>2</b><span>Plan</span></div>
+        <div class="step"><b>3</b><span>Execute</span></div>
+        <div class="step"><b>4</b><span>Review &amp; Improve</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="lang-zh">
+      <h2>联系（演示）</h2>
+      <form class="form" onsubmit="demoSubmit(event, 'ok-zh')">
+        <label for="n-zh">姓名</label><input id="n-zh" type="text" required>
+        <label for="e-zh">邮箱</label><input id="e-zh" type="email" required>
+        <label for="s-zh">需要的服务</label>
+        <select id="s-zh"><option>搜索优化</option><option>社交媒体</option><option>内容营销</option><option>付费广告</option></select>
+        <label for="m-zh">留言</label><textarea id="m-zh"></textarea>
+        <button class="btn" type="submit">提交（演示）</button>
+        <div class="ok" id="ok-zh">演示提交成功（示意）：表单不会真正发送。</div>
+      </form>
+    </div>
+    <div class="lang-en">
+      <h2>Contact (Demo)</h2>
+      <form class="form" onsubmit="demoSubmit(event, 'ok-en')">
+        <label for="n-en">Name</label><input id="n-en" type="text" required>
+        <label for="e-en">Email</label><input id="e-en" type="email" required>
+        <label for="s-en">Service needed</label>
+        <select id="s-en"><option>Search Optimization</option><option>Social Media</option><option>Content Marketing</option><option>Paid Advertising</option></select>
+        <label for="m-en">Message</label><textarea id="m-en"></textarea>
+        <button class="btn" type="submit">Submit (Demo)</button>
+        <div class="ok" id="ok-en">Demo submitted (illustration only): nothing is actually sent.</div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>演示作品，仅作效果展示 · 本公司为虚构公司，非真实企业 · <a href="../">返回灯塔建站</a><br>Demo website for display only — fictional company, not a real business · <a href="../">Back to Beacon Sites</a></footer>
+</body>
+</html>

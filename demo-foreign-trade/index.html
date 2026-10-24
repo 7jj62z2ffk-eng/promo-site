@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VoltEdge · 消费电子配件出口商（演示） | Consumer Electronics Accessories Exporter (Demo)</title>
+<style>
+  :root { --navy: #0b2a4a; --cyan: #0e7d8c; --ink: #16222e; --muted: #5a6b7d; --line: #e5e9ee; --bg: #f6f8fb; }
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Segoe UI", sans-serif; margin: 0; color: var(--ink); line-height: 1.75; background: #fff; -webkit-font-smoothing: antialiased; }
+  a { color: var(--cyan); }
+  .demo-strip { background: #f5a623; color: #1a1a1a; text-align: center; padding: 9px 16px; font-size: 13.5px; font-weight: 600; }
+  .demo-strip a { color: #1a1a1a; }
+  .langbar { background: var(--navy); color: #fff; text-align: right; padding: 10px 20px; font-size: 14px; }
+  .langbar button { background: transparent; border: 1px solid rgba(255,255,255,.4); color: #fff; border-radius: 999px; padding: 5px 16px; margin-left: 8px; cursor: pointer; font: inherit; font-size: 14px; }
+  .langbar button.active { background: #f5a623; color: #1a1a1a; border-color: #f5a623; font-weight: bold; }
+  .lang-en { display: none; }
+  body.lang-en .lang-zh { display: none; }
+  body.lang-en .lang-en { display: block; }
+  header { background: linear-gradient(120deg, #0b2a4a, #0e7d8c); color: #fff; padding: 72px 24px 64px; text-align: center; }
+  header h1 { margin: 0; font-size: 46px; letter-spacing: 2px; }
+  header p { margin: 16px 0 0; font-size: 18px; opacity: .94; }
+  nav { background: #fff; border-bottom: 1px solid var(--line); text-align: center; padding: 13px 16px; position: sticky; top: 0; }
+  nav a { margin: 0 14px; text-decoration: none; color: var(--navy); font-weight: 600; font-size: 15px; }
+  main { max-width: 1040px; margin: 0 auto; padding: 16px 24px 72px; }
+  section { margin-top: 64px; }
+  h2 { color: var(--navy); font-size: 28px; margin: 0 0 8px; }
+  .sub { color: var(--muted); margin: 0 0 24px; }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  .card { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: #fff; box-shadow: 0 6px 20px rgba(11,42,74,.06); }
+  .tile { height: 132px; display: flex; align-items: center; justify-content: center; font-size: 44px; font-weight: 800; color: #fff; }
+  .tile.t1 { background: linear-gradient(135deg, #0b2a4a, #2a6db0); }
+  .tile.t2 { background: linear-gradient(135deg, #0e7d8c, #35b6a5); }
+  .tile.t3 { background: linear-gradient(135deg, #5b3fb8, #9a7bf0); }
+  .tile.t4 { background: linear-gradient(135deg, #b4532a, #e08a3c); }
+  .card-body { padding: 18px; }
+  .card-body h3 { margin: 0 0 6px; font-size: 17px; color: var(--navy); }
+  .card-body p { margin: 0; color: var(--muted); font-size: 14.5px; }
+  .price { color: var(--navy); font-weight: 800; font-size: 17px; margin-top: 10px; }
+  .about { background: var(--bg); border-radius: 14px; padding: 26px 28px; }
+  .form label { display: block; margin: 12px 0 4px; font-size: 15px; }
+  .form input, .form textarea, .form select { width: 100%; padding: 11px 13px; border: 1px solid var(--line); border-radius: 10px; font: inherit; font-size: 15px; }
+  .form textarea { min-height: 100px; }
+  .btn { display: inline-block; background: var(--cyan); color: #fff; border: none; padding: 12px 26px; border-radius: 999px; font-size: 15px; font-weight: bold; cursor: pointer; margin-top: 16px; }
+  .ok { display: none; background: #e7f6ec; border: 1px solid #bfe3c8; color: #1e6b32; border-radius: 10px; padding: 12px 16px; margin-top: 16px; }
+  footer { text-align: center; color: var(--muted); font-size: 13px; padding: 32px 24px; border-top: 1px solid var(--line); }
+  @media (max-width: 820px) { .grid { grid-template-columns: 1fr 1fr; } header h1 { font-size: 32px; } }
+</style>
+<script>
+  function setLang(l) {
+    document.body.classList.toggle('lang-en', l === 'en');
+    document.documentElement.lang = (l === 'en') ? 'en' : 'zh-CN';
+    var z = document.getElementById('btn-zh');
+    var e = document.getElementById('btn-en');
+    if (z) { z.setAttribute('aria-pressed', l === 'zh' ? 'true' : 'false'); z.classList.toggle('active', l === 'zh'); }
+    if (e) { e.setAttribute('aria-pressed', l === 'en' ? 'true' : 'false'); e.classList.toggle('active', l === 'en'); }
+  }
+  function demoSubmit(ev, id) {
+    ev.preventDefault();
+    document.getElementById(id).style.display = 'block';
+  }
+</script>
+</head>
+<body>
+<div class="demo-strip">演示作品，仅作效果展示 · 本站为虚构公司，非真实企业 <a href="../">← 返回灯塔建站</a> · Demo website for display only — fictional company, not a real business</div>
+<div class="langbar">语言 Language:
+  <button id="btn-zh" class="active" aria-pressed="true" onclick="setLang('zh')">中文</button>
+  <button id="btn-en" aria-pressed="false" onclick="setLang('en')">EN</button>
+</div>
+
+<header>
+  <div class="lang-zh">
+    <h1>VoltEdge</h1>
+    <p>消费电子配件出口商 · 无线充电、移动电源、数据线、耳机</p>
+  </div>
+  <div class="lang-en">
+    <h1>VoltEdge</h1>
+    <p>Consumer Electronics Accessories Exporter · Wireless Chargers, Power Banks, Cables, Earbuds</p>
+  </div>
+</header>
+
+<nav>
+  <div class="lang-zh"><a href="#products">产品</a><a href="#about">关于</a><a href="#inquiry">询价</a></div>
+  <div class="lang-en"><a href="#products">Products</a><a href="#about">About</a><a href="#inquiry">Inquiry</a></div>
+</nav>
+
+<main>
+  <section id="products">
+    <div class="lang-zh">
+      <h2>产品展示</h2>
+      <p class="sub">以下产品与价格均为演示示意。批量订购请通过询价表单联系（演示表单，不会真正发送）。</p>
+      <div class="grid">
+        <div class="card"><div class="tile t1">WC</div><div class="card-body"><h3>VoltCharge Pro 无线充电器</h3><p>15W 快充，支持多机型，附示意包装。</p><div class="price">$24.50 / 件（示意）</div></div></div>
+        <div class="card"><div class="tile t2">PB</div><div class="card-body"><h3>VoltBank 10000 移动电源</h3><p>10000mAh，双口输出，附示意包装。</p><div class="price">$32.00 / 件（示意）</div></div></div>
+        <div class="card"><div class="tile t3">BC</div><div class="card-body"><h3>VoltCable 编织数据线</h3><p>尼龙编织，1.5 米，USB-C 接口。</p><div class="price">$12.90 / 件（示意）</div></div></div>
+        <div class="card"><div class="tile t4">EB</div><div class="card-body"><h3>VoltBuds 真无线耳机</h3><p>蓝牙 5.3，充电盒续航示意 24 小时。</p><div class="price">$45.00 / 件（示意）</div></div></div>
+      </div>
+    </div>
+    <div class="lang-en">
+      <h2>Products</h2>
+      <p class="sub">Products and prices below are for display only. For bulk orders, use the inquiry form (demo form — nothing is actually sent).</p>
+      <div class="grid">
+        <div class="card"><div class="tile t1">WC</div><div class="card-body"><h3>VoltCharge Pro Wireless Charger</h3><p>15W fast charging, multi-model support, demo packaging.</p><div class="price">$24.50 / unit (demo)</div></div></div>
+        <div class="card"><div class="tile t2">PB</div><div class="card-body"><h3>VoltBank 10000 Power Bank</h3><p>10,000mAh, dual output, demo packaging.</p><div class="price">$32.00 / unit (demo)</div></div></div>
+        <div class="card"><div class="tile t3">BC</div><div class="card-body"><h3>VoltCable Braided Cable</h3><p>Nylon braided, 1.5 m, USB-C.</p><div class="price">$12.90 / unit (demo)</div></div></div>
+        <div class="card"><div class="tile t4">EB</div><div class="card-body"><h3>VoltBuds True Wireless Earbuds</h3><p>Bluetooth 5.3, case battery demo-rated at 24 hours.</p><div class="price">$45.00 / unit (demo)</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="lang-zh">
+      <h2>关于 VoltEdge（虚构）</h2>
+      <div class="about">
+        <p>VoltEdge 是一家虚构的消费电子配件出口商，本页仅用于展示“出口企业官网”可以做成什么样：双语切换、产品展示、询价表单。公司介绍、产品与价格均为示意，不构成真实报价。</p>
+      </div>
+    </div>
+    <div class="lang-en">
+      <h2>About VoltEdge (Fictional)</h2>
+      <div class="about">
+        <p>VoltEdge is a fictional consumer-electronics accessories exporter. This page only demonstrates what an exporter website can look like: bilingual switching, product showcase and inquiry form. Company details, products and prices are illustrative and not real quotations.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="inquiry">
+    <div class="lang-zh">
+      <h2>询价表单（演示）</h2>
+      <form class="form" onsubmit="demoSubmit(event, 'ok-zh')">
+        <label for="n-zh">姓名</label><input id="n-zh" type="text" required>
+        <label for="e-zh">邮箱</label><input id="e-zh" type="email" required>
+        <label for="p-zh">感兴趣的产品</label>
+        <select id="p-zh"><option>VoltCharge Pro 无线充电器</option><option>VoltBank 10000 移动电源</option><option>VoltCable 编织数据线</option><option>VoltBuds 真无线耳机</option></select>
+        <label for="m-zh">留言</label><textarea id="m-zh"></textarea>
+        <button class="btn" type="submit">提交询价（演示）</button>
+        <div class="ok" id="ok-zh">演示提交成功（示意）：表单不会真正发送，也不会产生真实询盘。</div>
+      </form>
+    </div>
+    <div class="lang-en">
+      <h2>Inquiry Form (Demo)</h2>
+      <form class="form" onsubmit="demoSubmit(event, 'ok-en')">
+        <label for="n-en">Name</label><input id="n-en" type="text" required>
+        <label for="e-en">Email</label><input id="e-en" type="email" required>
+        <label for="p-en">Product of interest</label>
+        <select id="p-en"><option>VoltCharge Pro Wireless Charger</option><option>VoltBank 10000 Power Bank</option><option>VoltCable Braided Cable</option><option>VoltBuds True Wireless Earbuds</option></select>
+        <label for="m-en">Message</label><textarea id="m-en"></textarea>
+        <button class="btn" type="submit">Submit Inquiry (Demo)</button>
+        <div class="ok" id="ok-en">Demo submitted (illustration only): nothing is actually sent and no real inquiry is created.</div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>演示作品，仅作效果展示 · 本站为虚构公司，非真实企业 · <a href="../">返回灯塔建站</a><br>Demo website for display only — fictional company, not a real business · <a href="../">Back to Beacon Sites</a></footer>
+</body>
+</html>
