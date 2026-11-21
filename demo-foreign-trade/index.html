@@ -15,8 +15,8 @@
   .langbar button { background: transparent; border: 1px solid rgba(255,255,255,.4); color: #fff; border-radius: 999px; padding: 5px 16px; margin-left: 8px; cursor: pointer; font: inherit; font-size: 14px; }
   .langbar button.active { background: #f5a623; color: #1a1a1a; border-color: #f5a623; font-weight: bold; }
   .lang-en { display: none; }
-  body.lang-en .lang-zh { display: none; }
-  body.lang-en .lang-en { display: block; }
+  body.show-en .lang-zh { display: none; }
+  body.show-en .lang-en { display: block; }
   header { background: linear-gradient(120deg, #0b2a4a, #0e7d8c); color: #fff; padding: 72px 24px 64px; text-align: center; }
   header h1 { margin: 0; font-size: 46px; letter-spacing: 2px; }
   header p { margin: 16px 0 0; font-size: 18px; opacity: .94; }
@@ -48,7 +48,7 @@
 </style>
 <script>
   function setLang(l) {
-    document.body.classList.toggle('lang-en', l === 'en');
+    document.body.classList.toggle('show-en', l === 'en');
     document.documentElement.lang = (l === 'en') ? 'en' : 'zh-CN';
     var z = document.getElementById('btn-zh');
     var e = document.getElementById('btn-en');
